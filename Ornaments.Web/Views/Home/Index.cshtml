@@ -1,0 +1,205 @@
+﻿@using Ornaments.Core.Dtos.Home;
+@using RadioMeti.Application.Utilities.Utils;
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model MainPageDto
+<div class="flex-grow-1 w-100 m-0">
+    <!-- Slider -->
+    <div class="row w-100 m-0 my-2">
+        <div class="slider w-100 mx-0">
+            <div class="controls">
+                <div class="control-prev slick-arrow"><li class="fas fa-chevron-circle-left fa-lg slide-arrow"></li></div>
+                <div class="control-next slick-arrow"><li class="fas fa-chevron-circle-right fa-lg slide-arrow"></li></div>
+            </div>
+
+            <div class="multiple-items">
+                @foreach (var item in Model.SliderOrnaments)
+                {
+                    <div><img style="height:650px;" class="slide-img" src="@(PathExtension.OrnamentImageOriginPath+item.Image)"></div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-5">
+        <!-- Services -->
+        <div class="row text-center my-2 mx-1 mx-lg-5 justify-content-center align-items-center">
+            <div class="col-12 col-md-6">
+                <div class="mb-4">
+                    <h4 class="text-center service-title mb-0 wow animate__animated animate__bounce" data-wow-delay=".5s">خدمات ما</h4>
+                    <img src="~/img/divider.png" class="mt-0 mb-2 wow animate__animated animate__rubberBand divider" />
+                    <p class="text-center wow animate__animated animate__backInLeft" data-wow-delay=".7s">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                    </p>
+                    <button type="button" class="btn wow animate__animated animate__flipInX" data-wow-delay="1s">... بیشتر</button>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="row justify-content-between mb-3">
+                    <div class="col-12 col-sm-6 d-flex justify-content-around image">
+                        <div class="row">
+                            <div class="col-6 d-flex flex-column justify-content-center p-0 wow animate__animated animate__bounceIn" data-wow-delay=".4s">
+                                <p class="mb-1">ارسال رایگان</p>
+                                <p class="font-12 text-muted">ارسال رایگان به سراسر کشور</p>
+                            </div>
+                            <div class="col-6 p-0">
+                                <img src="~/img/delivery-gold1.png" class="size wow animate__animated animate__bounceInDown" data-wow-delay=".8s" id="delivery" href="#" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 d-flex justify-content-around image">
+                        <div class="row">
+                            <div class="col-6 d-flex flex-column justify-content-center p-0 wow animate__animated animate__bounceIn" data-wow-delay=".4s">
+                                <p class="mb-1">اصالت جواهرات</p>
+                                <p class="font-12 text-muted"> با کیفیت  ترین سنگ های قیمتی</p>
+                            </div>
+                            <div class="col-6 p-0">
+                                <img src="~/img/diamond.png" class="size wow animate__animated animate__bounceInDown" data-wow-delay=".6s" id="diamond" href="#" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between mb-4">
+                    <div class="col-12 col-sm-6 d-flex justify-content-around image">
+                        <div class="row">
+                            <div class="col-6 d-flex flex-column justify-content-center p-0 wow animate__animated animate__bounceIn" data-wow-delay=".4s">
+                                <p class="mb-1">فاکتور معتبر</p>
+                                <p class="font-12 text-muted">ارائه فاکتور خرید همراه کالا</p>
+                            </div>
+                            <div class="col-6 p-0">
+                                <img src="~/img/financial-gold1.png" class="size wow animate__animated animate__bounceInDown" data-wow-delay="1.2s" id="financial" href="#" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 d-flex justify-content-around image">
+                        <div class="row">
+                            <div class="col-6 d-flex flex-column justify-content-center p-0 wow animate__animated animate__bounceIn" data-wow-delay=".4s">
+                                <p class="mb-1">ضمانت تعویض</p>
+                                <p class="font-12 text-muted">امکان تعویض حداکثر تا 7 روز</p>
+                            </div>
+                            <div class="col-6 p-0">
+                                <img src="~/img/guaranty.png" class="size wow animate__animated animate__bounceInDown" data-wow-delay="1s" id="guaranty" href="#" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- images -->
+        <div class="row mx-1 mx-lg-5">
+            
+               @foreach (var item in Model.MainOrnaments.Take(2))
+                {
+                    <div class="col-12 col-sm-6 col-md-3 p-0">
+                        <div class="image-all-together">
+                        <img class="img" style="height:300px;" src="@(PathExtension.OrnamentImageOriginPath+item.Image)">
+                            <span class="one"></span>
+                            <span class="two"></span>
+                            <span class="three"></span>
+                            <span class="four"></span>
+                        </div>
+                    </div>
+                }
+            
+            @if (Model.MainOrnaments.Count() > 2)
+            {
+                <div class="col-12 col-md-6 p-0">
+                    <div class="image-all-together">
+                        <img class="img" style="height:300px;" src="@(PathExtension.OrnamentImageOriginPath+Model.MainOrnaments[2].Image)">
+
+                        <span class="one"></span>
+                        <span class="two"></span>
+                        <span class="three"></span>
+                        <span class="four"></span>
+                    </div>
+                </div>
+
+            }
+
+            @foreach (var item in Model.MainOrnaments.Skip(3))
+            {
+                <div class="col-12 col-sm-6 col-md-3 p-0">
+                    <div class="image-all-together">
+                        <img class="img" style="height:300px;" src="@(PathExtension.OrnamentImageOriginPath+item.Image)">
+
+                        <span class="one"></span>
+                        <span class="two"></span>
+                        <span class="three"></span>
+                        <span class="four"></span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- Submit Form -->
+    <div class="row justify-content-center w-100 mx-0 p-3 my-2 bg-form">
+        <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <p class="text-center mt-2">برای اطلاع از  آخرین تخفیف ها در خبرنامه ثبت نام کنید </p>
+            <form class="d-flex flex-column flex-sm-row-reverse justify-content-center align-items-center mb-3 w-100">
+                <input class="form-control text-right email-submit holder" type="search" placeholder="آدرس ایمیل" aria-label="Search">
+                <button class="btn btn-form px-4" type="submit">ارسال</button>
+            </form>
+        </div>
+    </div>
+    <!-- Best Products -->
+    <div class="row w-100 mx-auto my-5">
+        <div class="col-12 d-flex justify-content-center mb-4">
+            <div class="mt-3">
+                <h4 class="text-center mb-0 title">پر بازیدترین ها</h4>
+                <img src="~/img/divider.png" class="mt-0 divider" />
+            </div>
+        </div>
+
+        <div class="container-fluid mb-1 mx-2 mx-lg-5 Products-slider">
+            <div class="Products-controls">
+                <div class="Products-control-prev slick-arrow"><li class="fas fa-angle-left fa-lg slide-arrow"></li></div>
+                <div class="Products-control-next slick-arrow"><li class="fas fa-angle-right fa-lg slide-arrow"></li></div>
+            </div>
+
+            <div class="Product-items">
+               
+                @foreach (var item in Model.MostViewsOrnaments)
+                {
+                    <div class="mx-1">
+                        <div class="card card-item mb-2">
+@*
+                            <div class="takhfif d-flex justify-content-start align-items-start">
+                                <p>-2%</p>
+                            </div>*@
+                            <img src="@(PathExtension.OrnamentImageThumbPath+item.Image)" class="card-img-top" alt="jewelry">
+                            <div class="card-body d-flex flex-column align-items-center">
+
+                                <h6 class="card-title text-center">@item.Name</h6>
+                                <div class="d-flex flex-column flex-md-row text-center card-price">
+                                    <p class="card-text text-danger font-12 mr-1 mb-0 text-dir">@item.Price.ToString("n0") تومان</p>
+                                </div>
+                                @*<div class="rate">
+                                    <a href="#"><li class="fa fa-star checked"></li></a>
+                                    <a href="#"><li class="fa fa-star checked"></li></a>
+                                    <a href="#"><li class="fa fa-star checked"></li></a>
+                                    <a href="#"><li class="fa fa-star checked"></li></a>
+                                    <a href="#"><li class="fa fa-star checked"></li></a>
+                                </div>*@
+
+                            </div>
+
+                          @*  <div class="card-footer justify-content-around footer-index">
+                                <a href="#"><li class="fas fa-random"></li></a>
+                                <a href="#"><li class="far fa-heart"></li></a>
+                                <a href="#"><li class="fas fa-shopping-cart"></li></a>
+                                <a href="#"><li class="fas fa-search"></li></a>
+                            </div>*@
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+   
+</div>

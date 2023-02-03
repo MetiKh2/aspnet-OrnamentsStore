@@ -1,0 +1,65 @@
+﻿@using Ornaments.Core.Dtos.Auth;
+@model SignupUserDto
+@{
+    ViewData["Title"] = "SignUp";
+}
+<style>
+
+
+    #login .container #login-row #login-column #login-box {
+        margin-top: 120px;
+        max-width: 600px;
+        min-height: 320px;
+        border: 1px solid #9C9C9C;
+        background-color: #EAEAEA;
+    }
+
+        #login .container #login-row #login-column #login-box #login-form {
+            padding: 20px;
+        }
+
+            #login .container #login-row #login-column #login-box #login-form #register-link {
+                margin-top: -85px;
+            }
+</style>
+<div id="login" class="mb-5">
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" asp-action="SignUp" asp-controller="Auth" method="post">
+                        <h3 class="text-center text-info">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Username:</label><br>
+                            <input asp-for="UserName" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Email:</label><br>
+                            <input asp-for="Email" type="email"  class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input asp-for="Password" type="password"    class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="repassword" class="text-info">RePassword:</label><br>
+                            <input asp-for="RePassword" type="password"   class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        </div>
+                        <div id="register-link" class="text-right mt-1">
+                            <a asp-controller="Auth" asp-action="Login" class="text-info">Login here</a>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <div asp-validation-summary="All" class="text-danger mb-3 fs-14 d-block"></div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

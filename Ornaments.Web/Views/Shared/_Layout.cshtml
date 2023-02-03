@@ -1,0 +1,116 @@
+﻿
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/fonts/font-face.css">
+	<link rel="stylesheet" href="~/css/style.css">
+	<!--Font awesome-->
+	<link rel="stylesheet" href="~/css/all.min.css">
+
+	<!--Slick slider-->
+	<link rel="stylesheet" type="text/css" href="~/slick/slick.css" />
+	<!--Add the new slick-theme.css if you want the default styling-->
+	<link rel="stylesheet" type="text/css" href="~/slick/slick-theme.css" />
+
+	<!--Favicon-->
+	<link rel="icon" type="image/png" href="~/img/favicon.png" size="300x300">
+
+	<!--Animate css-->
+	<link rel="stylesheet" type="text/css" href="~/css/animate.min.css">
+    <link href="~/notifications.css" rel="stylesheet" />
+	<title>گالری طلا و جواهرات</title>
+</head>
+<body>
+	<div id="wrapper">
+		<!-- Header -->
+		@await Component.InvokeAsync("Header")
+		<!-- Main -->
+		@RenderBody()
+		<!--footer-->
+		<footer class="row w-100 m-0 d-flex justify-content-center">
+			<div class="row d-flex flex-column align-items-center mt-2 w-100">
+				<img src="~/img/logo-white1.png" class="mt-1" href="#" alt="logo" />
+				<p class="text-center w-50 text-white font-12">
+					لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+					چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+				</p>
+				<div class="row social-footer d-flex justify-content-center">
+					<a href="#" class="m-2"><i class="fab fa-instagram p-1"></i></a>
+					<a href="#" class="m-2"><i class="fab fa-facebook-f p-1"></i></a>
+					<a href="#" class="m-2"><i class="fab fa-telegram-plane p-1"></i></a>
+					<a href="#" class="m-2"><i class="fab fa-twitter p-1"></i></a>
+					<a href="#" class="m-2"><i class="fab fa-google-plus-g p-1"></i></a>
+				</div>
+
+				<div class="row my-2 d-flex flex-md-row flex-column-reverse justify-content-center">
+					<div class="col-12 col-md-3">
+						<div class="d-flex flex-column align-items-center">
+							<a href="https://enamad.ir"><img src="~/img/enamad-full-star.png" class="rounded bg-light"></a>
+						</div>
+					</div>
+					<div class="col-12 col-md-3">
+						<div class="footer-items d-flex flex-column align-items-center text-white text-center">
+							<h6 class="border-bottom border-white p-2">لینک های مفید</h6>
+							<ul class="list-unstyled">
+								<li><a href="#" class="font-12">درباره ما</a></li>
+								<li><a href="#" class="font-12">فروشگاه جواهرات</a></li>
+								<li><a href="#" class="font-12">قوانین و مقررات</a></li>
+								<li><a href="#" class="font-12">حریم خصوصی</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-12 col-md-3">
+						<div class="footer-items d-flex flex-column align-items-center text-white text-center">
+							<h6 class="border-bottom border-white p-2">حساب کاربری</h6>
+							<ul class="list-unstyled">
+								<li><a href="#" class="font-12">حساب من</a></li>
+								<li><a href="#" class="font-12">سفارشات من</a></li>
+								<li><a href="#" class="font-12">کیف پول من</a></li>
+								<li><a href="#" class="font-12">سبد خرید من</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-12 col-md-3">
+						<div class="footer-items d-flex flex-column align-items-center text-white text-center">
+							<h6 class="border-bottom border-white p-2"> تماس باما</h6>
+							<ul class="list-unstyled">
+								<li><p href="#" class="font-12 m-0">تلفن: 12345678-021</p></li>
+								<li><p href="#" class="font-12 m-0">فکس: 12345679-021</p></li>
+								<li><p href="#" class="font-12 m-0">info@jewelry.com :ایمیل</p></li>
+								<li><p href="#" class="font-12 m-0">آدرس: تهران- میدان هفت تیر- خیابان کریم خان زند- پلاک 12 </p></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="scroll-up-btn mr-auto ml-3">
+					<a href="#scroll">
+						<i class="far fa-arrow-alt-circle-up fa-2x"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="copyright d-flex align-items-end">
+				<p class="text-secondary font-12">طراحی و اجرا نرگس مقدسی</p>
+			</div>
+		</footer>
+	</div>
+ 
+	<script src="~/js/jquery-3.5.1.slim.min.js"></script>
+	<script src="~/js/popper.min.js"></script>
+	<script src="~/js/bootstrap.min.js"></script>
+	<!-- slick slider scripts -->
+	<script type="text/javascript" src="~/slick/slick.min.js"></script>
+	<script src="~/js/index.js"></script>
+	<script src="~/js/wow.min.js"></script>
+	<script src="~/notifications.js"></script>
+	<script src="~/custom.js"></script>
+	<partial name="_SiteMessages" />
+	<script>
+		new WOW().init();
+	</script>
+</body>
+</html>

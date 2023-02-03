@@ -1,0 +1,98 @@
+﻿@using Ornaments.DataAccess.Entities.Ornaments;
+@model List<Category>
+<div id="scroll"></div>
+<span class="navbar-bg"></span>
+<div class="row menu-top w-100 m-0 d-none d-lg-flex justify-content-between align-items-center">
+	<div class="d-flex justify-content-start ml-4 menu-icon">
+		<a href="#" class="mx-2"><li class="fas fa-shopping-cart"></li></a>
+		<a href="#" class="mx-2"><li class="fas fa-user"></li></a>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<a asp-controller="Auth" asp-action="Logout" class="mx-1">خروج</a>
+		}
+		else
+		{
+			<a asp-controller="Auth" asp-action="Login" class="mx-1">ورود</a>
+			<a asp-controller="Auth" asp-action="SignUp" class="mx-1">ثبت نام</a>
+
+		}
+
+		<form class="form-inline mx-2">
+			<a href="#" class="search-close-icon"><i class="fas fa-times"></i></a>
+			<input class="form-control mr-sm-2 mr-0 d-none search-box" type="search" aria-label="Search">
+			<a href="#" class="mx-0"><li class="fas fa-search search-icon"></i></a>
+			@*<a asp-controller="Auth" asp-action="SignOut" class="mx-1">خروج</a>*@
+
+		</form>
+
+	</div>
+	<div class="d-flex justify-content-center mr-4 menu-icon">
+		<div class="mx-2">(021-12345678)</div>
+		<a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
+		<a href="#" class="mx-2"><i class="fab fa-facebook-f"></i></a>
+		<a href="#" class="mx-2"><i class="fab fa-telegram-plane"></i></a>
+		<a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+	</div>
+</div>
+<div class="row w-100 m-0 d-flex flex-row justify-content-between align-items-center flex-lg-column align-items-lg-center justify-content-lg-center">
+	<div class="d-flex justify-content-start align-items-center d-lg-none ml-2 menu-icon">
+		<a href="#" class="mx-1"><li class="fas fa-shopping-cart"></li></a>
+		<a href="#" class="mx-1"><li class="fas fa-user"></li></a>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<a asp-controller="Auth" asp-action="Logout" class="mx-1">خروج</a>
+		}
+		else
+		{
+			<a asp-controller="Auth" asp-action="Login" class="mx-1">ورود</a>
+			<a asp-controller="Auth" asp-action="SignUp" class="mx-1">ثبت نام</a>
+
+		}
+
+	</div>
+	<!-- Logo -->
+	<div class="d-flex justify-content-center">
+		<img src="~/img/logo20.png" class="logo-img mt-1" href="#" alt="logo" />
+	</div>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+
+
+		<button class="navbar-toggler menu-animate" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon change-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse justify-content-center menu-animate" id="navbarSupportedContent" style="direction:rtl">
+			<!-- Logo in sliding menu -->
+			<div class="d-flex d-lg-none justify-content-center mb-3">
+				<img src="~/img/logo20-120.png" class="img-fluid mt-1" href="#" alt="logo" />
+			</div>
+			<!-- Search in sliding menu -->
+			<form class="form-inline d-lg-none m-2 search-mob">
+				<!--<a href="#" class="search-close-icon"><i class="fas fa-times"></i></a>-->
+				<input class="form-control mr-sm-2 mr-0 input-search-mob" type="search" aria-label="Search">
+				<a href="#" class="mx-0"><li class="fas fa-search search-btn"></i></a>
+			</form>
+			<ul class="navbar-nav p-0 flex-wrap">
+
+				<li class="nav-item dropdown active">
+					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						خانه اصلی
+					</a>
+				</li>
+
+				@foreach (var item in Model)
+				{
+					<li class="nav-item dropdown">
+						<a class="nav-link" asp-controller="Ornaments" asp-action="Ornaments" asp-route-category="@item.Id" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							@item.CategoryName
+						</a>
+					</li>
+				}
+			</ul>
+		</div>
+
+	</nav>
+
+</div>

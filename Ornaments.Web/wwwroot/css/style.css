@@ -1,0 +1,679 @@
+/* ------  Body------ */
+		   /*scroll bar*/
+/* ------1 Header------ */
+		   /*Top Menu*/
+		   /*Logo*/
+		   /*Navbar*/
+		   /*Sliding Menu*/
+/* ------2 Slider------ */
+		   /*Slider Arrows*/
+		   /*Slider Dots*/
+/* ------3 Services------ */
+	  	   /*Buttons Style*/
+		   /*Service Images*/
+/* ------4 Images------ */
+		   /*Images Hover*/
+/* ------5 Submit Form------ */
+		   /*Buttons Style*/
+/* ------6 Start Best products------ */
+		   /*Cards body*/
+		   /*Sale*/
+		   /*Card Stars*/
+		   /*Cards Footer*/
+		   /*Products Slider*/
+/* ------7 Blog------ */		 
+/* ------7 brands------ */
+/* ------8 Footer------ */
+
+/* ////////////////////////////////////////// */
+
+/* ------Start Body------ */
+html {
+	scroll-behavior: smooth;
+}
+body{
+	font-family: Shabnam;
+	overflow-x: hidden;
+}
+
+#wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+::selection {
+    background-color: #171717;
+    color: #fff;
+}
+
+input:focus {
+	box-shadow: 0 0 0 .2rem #d4af37 !important;
+	border: none !important;
+}
+
+button:focus {
+	box-shadow: 0 0 0 0 #d4af37 !important;
+	border: none !important;
+}
+
+input::-webkit-search-cancel-button {
+	display: none;
+}
+
+:focus {
+	outline: none !important;
+}
+/*scroll bar*/
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555555c7;
+	
+}
+
+/* ------End Body------ */
+
+/* ------1 Start Header------ */
+/*Top Menu*/
+.menu-top {
+	height: 40px;
+	box-shadow: 0 5px 5px -7px #171717;
+	background-color: #fafafa;
+}
+
+.search-close-icon {
+	display: none;
+    margin-right: -15px;
+    z-index: 1;
+    margin-top: 4px;
+    color: #ced4da !important;
+    font-size: 12px;
+}
+
+.search-box.inpute-show {
+	border-radius: 20px;
+	height: 25px;
+    padding-left: 20px;
+	direction: rtl;
+}
+
+.menu-icon a{
+	color: #171717;
+}
+
+.menu-icon .fas:hover, .menu-icon .fab:hover {
+	color: #d4af37;
+}
+
+/*Logo*/
+@media (max-width: 576px) {
+	.logo-img {
+		width: 100px;
+		height: auto;
+	}
+}
+/*Navbar*/
+.navbar {
+	height: 50px;
+}
+@media (min-width: 992px) {
+	.nav-item {
+		direction: rtl;
+		box-shadow: -5px 0 5px -7px #171717;
+	}
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+	color: #d4af37;
+}
+
+.navbar-nav li:last-child{
+	box-shadow: 0 0 0 0;
+}
+.nav-link {
+	padding: 0;
+}
+
+.navbar-collapse a {
+	text-align: right;
+}
+
+.dropdown-menu {
+	left: auto;
+	right: 0;
+	min-width: 8rem !important;
+	border-radius: 0;
+}
+
+.dropdown-item:hover {
+	background-color: #d4af3720;
+}
+/*Sliding Menu*/
+@media(max-width: 991px) {
+	.navbar-toggler {
+		right: 0;
+		top: 0;
+		z-index: 3;
+		border: none;
+		background-color: transparent;
+		
+		
+	}
+	.navbar-collapse {
+		background: #fff;
+		position: fixed;
+		width: 280px;
+		min-height: 120vh;
+		top: 0;
+		right: -300px;
+		z-index: 2;
+		padding: 15px;
+		
+	}
+	
+	.menu-animate {
+		-webkit-transition: right .4s linear 0s;
+		-moz-transition: right .4s linear 0s;
+		-ms-transition: right .4s linear 0s;
+		-o-transition: right .4s linear 0s;
+		transition: right .4s linear 0s;
+		
+	}
+	.navbar-collapse.show {
+		right: 0;
+		-webkit-transition: right .4s linear 0s;
+		-moz-transition: right .4s linear 0s;
+		-ms-transition: right .4s linear 0s;
+		-o-transition: right .4s linear 0s;
+		transition: right .4s linear 0s;
+	}
+	.navbar-bg {
+		width: 100%;
+		height: 100vh;
+		position: fixed;
+		background: #15151536;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		display: none;
+	}
+	.nav-item {
+		border-bottom: 1px solid #e9ecef;
+		padding: 7px;
+	}
+	.navbar-light .navbar-nav .nav-link {
+		color: #666;
+	}
+	
+	.dropdown-menu {
+		border: none;
+		background: #d4af3720;
+	}
+	
+	.search-mob {
+		position: relative;
+	}
+	.search-btn {
+		position: absolute;
+		right: 15px;
+	}
+	.input-search-mob {
+		border-radius: 25px;
+		height: 30px;
+		padding-right: 25px;
+	}
+	.dropdown a{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+@media (max-width: 360px){
+	.navbar-collapse {
+		width: 220px;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 770px) {
+	.fa-times {
+		color: #fafafa;
+	}
+}
+
+
+
+/* ------End Header------ */
+
+/* ------2 Start Slider------ */
+
+.slide-img {
+	width: 100%;
+}
+.slider {
+	position: relative;
+}
+/*Slider Arrows*/
+@media (min-width: 992px) {
+	.controls {
+		display: none;
+	}
+
+	.slider:hover .controls {
+		display: block;
+	}
+}
+
+.control-prev {
+	position: absolute;
+	height: 80px;
+	top: 0%;
+	bottom: 0%;
+	margin-top: auto;
+	margin-bottom: auto;
+	left: 15px;
+	z-index: 1;
+}
+
+.control-next {
+	position: absolute;
+	height: 80px;
+	top: 0%;
+	bottom: 0%;
+	margin-top: auto;
+	margin-bottom: auto;
+	right: 15px;
+	z-index: 1;
+}
+
+.slide-arrow {
+	color: #d4af37;
+	font-size: 24px !important;
+	margin-top: 45%;
+
+}
+/*Slider Dots*/
+.slick-dots {
+	margin-bottom: 30px !important;
+}
+.slick-dots li {
+	margin: 0 !important;
+}
+
+.slick-dots li.slick-active button:before {
+	color: #d4af37 !important;
+}
+
+.slick-dots li button:before {
+	font-size: 10px !important;
+	color: #f5f5f5 !important;
+}
+
+/* ------End Slider------ */
+
+/* ------3 Start Services------ */
+.service {
+	font-size: 12px;
+}
+.service-title {
+	color: #d4af37;
+}
+/*Buttons Style*/
+.btn {
+	border:3px solid #d4af37;
+	border-radius:0;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	transition: all 1s;
+	position: relative;
+}
+.btn:hover {
+	transform: scale(1.2);
+	border: no-border;
+	color: #fff;
+	background: #d4af37
+}
+/*Service Images*/
+.image:hover #delivery {
+		content: url(../img/delivery1.png);
+}
+.image:hover #diamond {
+		content: url(../img/Diamond-black.png);
+}
+.image:hover #guaranty {
+		content: url(../img/guaranty-black.png);
+}
+.image:hover #financial {
+		content: url(../img/financial1.png);
+}
+.size {
+	width: 80px;
+	height: 80px;
+}
+/* ------End Services------ */
+
+/* ------4 Start Images ------ */
+.img {
+	width: 100%;
+	height: 100%;
+}
+
+/*Images Hover*/
+.image-all-together{
+  position: relative;
+}
+.image-all-together span{
+  position: absolute;
+  background-color: #d4af37;
+  transition: .5s
+}
+.image-all-together .one{
+  height: 0;
+  width: 4px;
+  top: 0;
+  left: 0;
+}
+.image-all-together .two{
+  height: 4px;
+  width: 0;
+  bottom: 0;
+  left: 0;
+}
+.image-all-together .three{
+  height: 0;
+  width: 4px;
+  bottom:0;
+  right:0
+}
+.image-all-together .four{
+  height: 4px;
+  width: 0;
+  top: 0;
+  right: 0;
+}
+.image-all-together:hover .one,
+.image-all-together:hover .three{
+  height: 100%;
+}
+.image-all-together:hover .two,
+.image-all-together:hover .four{
+  width: 100%;
+}
+.image-all-together:hover img{
+  transition-duration: .5s;
+  transition-delay: .2s;
+  opacity: .5;
+}
+/* ------End Images ------ */
+
+/* ------5 Start Submit Form------ */
+.bg-form {
+	background-image: url(../img/U10.png);
+	background-size: cover;
+	height: 200px;
+}
+
+.email-submit {
+	border-radius: 0;
+}
+
+.btn-form {
+	margin-right:15px;
+}
+
+@media (max-width:578px) {
+	.btn-form {
+		margin-right:0;
+		margin-top: 10px;
+	}	
+}
+
+@media (max-width: 385px) {
+	.holder::placeholder {
+		visibility:hidden;
+	}
+}
+
+.holder-name::placeholder {
+	padding: 6px 12px 6px 12px !important;
+} 
+
+/* ------End Submit Form------ */
+
+/* ------6 Start Best products------ */
+.title {
+	color: #d4af37;	
+}
+.divider {
+	width: 250px;
+	height: auto;
+}
+/*Cards body*/
+.font-12 {
+	font-size: 12px;
+}
+.text-dir {
+	direction: rtl;
+}
+
+.card-item {
+	border-radius: 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.card-title {
+	height: 40px;
+}
+
+.card-price {
+	height: 40px;
+}
+
+@media (max-width: 960px) {
+	
+	.card-price {
+		margin-top: 10px;
+	}
+	.card-title {
+		font-size: 12px;
+	}
+}
+
+.rate {
+	padding-top: .75rem; 
+	padding-bottom: .75rem; 
+}
+.card:hover .rate{
+	display: none;
+	transition: display 0.3s linear;
+	padding-bottom: 0;
+}
+/*Sale*/
+.takhfif {
+	position: absolute;
+	width:100%;
+	height:100%;
+	padding:5px;	
+}
+
+.takhfif p {
+	background:#d4af37;
+	color:white;
+	padding: 1px 10px;
+	font-size: 12px;
+}
+/*Card Stars*/
+.fa-star {
+	color: #ccc;
+}
+.checked {
+	color: #ffc700; 
+}
+/*Cards Footer*/
+.card-footer {
+	display: none;
+	transition: display 0.3s linear;
+}
+
+.card:hover .card-footer{
+	display: flex;
+	transition: display 0.3s linear;
+}
+
+.footer-index {
+	z-index: 2;
+}
+
+.footer-index a {
+	color: #d4af37;
+}
+/*Products Slider*/
+.Products-slider {
+	position: relative;
+	overflow: hidden;
+}
+
+.Products-control-prev {
+	position: absolute;
+	height: 100px;
+	top: 0%;
+	bottom: 0%;
+	margin-top: auto;
+	margin-bottom: auto;
+	left: 0px;
+	z-index: 1;
+}
+
+.Products-control-next {
+	position: absolute;
+	height: 100px;
+	top: 0%;
+	bottom: 0%;
+	margin-top: auto;
+	margin-bottom: auto;
+	right: 0px;
+	z-index: 1;
+}
+/* ------End Best products------ */
+
+/* ------7 Start Blog------ */
+
+.blog-text {
+	width: 85%;
+    margin-top: -100px;
+    background: white;
+    border: 7px solid #d4af37;
+	z-index: 1;
+}
+.blog-img {
+	width: 100%;
+	height: 100%;
+    outline: 2px solid white;
+    outline-offset: -10px;
+}
+.blog-text a {
+	color: #d4af37;
+	text-decoration: none;
+}
+
+.blog-text p {
+	height: 95px;
+	direction: rtl;
+    text-align: justify;
+}
+
+.blog-text h6 {
+	height: 30px;
+}
+.more-text {
+	display: none;
+}
+
+
+.blog:hover .more-icon{
+	display: none;
+}
+
+.blog:hover .more-text{
+	display: block;
+	
+}
+
+.blog:hover .blog-img {
+	transform: scale(1.1);
+	transition-duration: .5s;
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.blog-text{
+		position: absolute;
+		width: 255px;
+		top: 170px;
+		right: 300px;
+		background: white;
+		border: 7px solid #d4af37;
+	}
+	.blog-img {
+	width: 300px;
+	height: 300px;
+    outline: 2px solid white;
+    outline-offset: -10px;
+	margin-right: 60px;
+	}
+}
+/* ------End Blog------ */
+
+/* ------8 Start brands------ */
+@media (max-width: 767px) {
+	.brands {
+		margin-bottom: 10px;
+	}
+}
+/* ------End brands------ */
+
+/* ------9 Start Footer------ */
+footer {
+	background: #000;
+	background-image: url(../img/footer1.png);
+	background-position-x: right;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-size: 250px 250px;
+	min-height: 45vh;
+}
+
+@media (max-width: 480px) {
+	footer {
+		background-image: none;
+	}
+}
+
+.social-footer a {
+	color: #fff;
+}
+
+.social-footer i:hover {
+	color: #d4af37;
+}
+
+.footer-items a {
+	color: #fff;
+}
+.footer-items a:hover {
+	color: #d4af37;
+	text-decoration: none;
+}
+
+.scroll-up-btn i {
+	color: #d4af37;
+}
+/* ------End Footer------ */
