@@ -27,6 +27,19 @@ namespace Ornaments.Web.Areas.Admin.Controllers
             filter.TakeEntity = 5;
             return View(await _ornamentService.FilterOrnaments(filter));
         }
+        [HttpGet("admin/Ornament/{id}/comments")]
+        public async Task<IActionResult> Comments(long id)
+        {
+            return View(await _ornamentService.GetComments(id));
+        }
+        [HttpGet("admin/Ornament/DeleteComment")]
+        public async Task<IActionResult> DeleteComment(long id,long ornamentId)
+        {
+            var result = await _ornamentService.DeleteComment(id);
+            if (result == null) return NotFound();
+            TempData["InfoMessage"] = result;
+            return RedirectToAction(nameof(Comments),new{ id= ornamentId });
+        }
         public async Task<IActionResult >CreateOrnament()
         {
             ViewBag.Categories = await _ornamentService.GetCategories();

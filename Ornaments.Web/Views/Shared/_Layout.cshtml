@@ -21,6 +21,17 @@
 	<!--Animate css-->
 	<link rel="stylesheet" type="text/css" href="~/css/animate.min.css">
     <link href="~/notifications.css" rel="stylesheet" />
+	<style>
+		a{
+			text-decoration:none !important;
+			color:unset;
+		}
+
+		a:hover {
+						text-decoration: none !important;
+						color: unset;
+		}
+	</style>
 	<title>گالری طلا و جواهرات</title>
 </head>
 <body>
@@ -111,6 +122,25 @@
 	<partial name="_SiteMessages" />
 	<script>
 		new WOW().init();
+		function navigateHeader(where) {
+			window.location.replace(where)
+		}
+		function onSuccessAddProductToOrder(res) {
+			console.log(res)
+			ShowMessage('پیغام', res.message, res.status.toLowerCase())
+			close_waiting()
+		}
+		$('#productCounter').change(function (e) {
+			let value = parseInt(e.target.value);
+			if (value && value > 0) {
+				$('#add-product-to-order-count').val(value);
+			}
+		})
+
+		function submitForm(formId) {
+			$(formId).submit();
+			open_waiting()
+		}
 	</script>
 </body>
 </html>

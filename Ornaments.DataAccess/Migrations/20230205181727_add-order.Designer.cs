@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ornaments.DataAccess.Context;
 
@@ -11,9 +12,10 @@ using Ornaments.DataAccess.Context;
 namespace Ornaments.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230205181727_add-order")]
+    partial class addorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,87 +155,6 @@ namespace Ornaments.DataAccess.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Ornaments.DataAccess.Entities.Order.Order", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<string>("AdminDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsPay")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("PermentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TrackingCode")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orderd");
-                });
-
-            modelBuilder.Entity("Ornaments.DataAccess.Entities.Order.OrderDetail", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("OrderId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrnamentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("OrnamentId");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Ornaments.DataAccess.Entities.Ornaments.Category", b =>
@@ -477,36 +398,6 @@ namespace Ornaments.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Ornaments.DataAccess.Entities.Order.Order", b =>
-                {
-                    b.HasOne("Ornaments.DataAccess.Entities.User.ApplicationUser", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Ornaments.DataAccess.Entities.Order.OrderDetail", b =>
-                {
-                    b.HasOne("Ornaments.DataAccess.Entities.Order.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ornaments.DataAccess.Entities.Ornaments.Ornament", "Ornament")
-                        .WithMany()
-                        .HasForeignKey("OrnamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Ornament");
-                });
-
             modelBuilder.Entity("Ornaments.DataAccess.Entities.Ornaments.Comment", b =>
                 {
                     b.HasOne("Ornaments.DataAccess.Entities.Ornaments.Ornament", "Ornament")
@@ -537,11 +428,6 @@ namespace Ornaments.DataAccess.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Ornaments.DataAccess.Entities.Order.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
             modelBuilder.Entity("Ornaments.DataAccess.Entities.Ornaments.Category", b =>
                 {
                     b.Navigation("Ornaments");
@@ -550,11 +436,6 @@ namespace Ornaments.DataAccess.Migrations
             modelBuilder.Entity("Ornaments.DataAccess.Entities.Ornaments.Ornament", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Ornaments.DataAccess.Entities.User.ApplicationUser", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

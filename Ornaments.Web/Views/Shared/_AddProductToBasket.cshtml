@@ -1,0 +1,10 @@
+﻿@using Ornaments.Core.Dtos.Order;
+@model AddProductToOrderDto
+<form method="post" id="add-product-to-order-form" asp-controller="Order" asp-action="AddProductToOrder"
+data-ajax="true"
+data-ajax-success="onSuccessAddProductToOrder"
+data-ajax-method="post"
+>
+    <input type="hidden" id="add-product-to-order-productId" asp-for="OrnamentId"/>
+    <input type="hidden" id="add-product-to-order-count" asp-for="Count"/>
+</form>

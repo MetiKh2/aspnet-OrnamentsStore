@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Ornaments.Core.Dtos;
 using Ornaments.Core.Dtos.Ornament;
 using Ornaments.Core.Dtos.Ornament.Category;
+using Ornaments.Core.Dtos.Ornament.Comment;
 using Ornaments.DataAccess.Entities.Ornaments;
 using RadioMeti.Application.DTOs.Admin.Category.Create;
 using RadioMeti.Application.DTOs.Admin.Category.Edit;
@@ -25,6 +26,11 @@ namespace Ornaments.Core.Services.Interfaces
         Task<string> EditOrnament(EditOrnamentDto edit);
         Task<string> DeleteOrnament(long id);
         Task<Ornament> GetOrnament(long id);
+
+        Task AddComment(AddCommentDto add);
+        Task<List<CommentsDto>> GetComments(long ornamentId);
+        Task<string> DeleteComment(long id);
+
 
     }
 }

@@ -1,0 +1,27 @@
+﻿@using Ornaments.DataAccess.Entities.Ornaments;
+@using RadioMeti.Application.Utilities.Utils;
+@{
+    ViewData["Title"] = "OrnamentsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Ornament>
+
+<div class="container">
+    <div class="row  my-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
+                <div class="card"  >
+                    <img src="@(PathExtension.OrnamentImageThumbPath+item.Image)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Category.CategoryName</p>
+                        <a asp-controller="Ornament" asp-action="Index" asp-route-id="@item.Id" class="btn btn-primary">مشاهده بیشتر</a>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+

@@ -57,6 +57,8 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IMessageSender, MessageSender>();
 builder.Services.AddScoped<IOrnamentService, OrnamentService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 #endregion
 var app = builder.Build();
 

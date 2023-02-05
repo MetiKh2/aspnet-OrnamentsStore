@@ -18,6 +18,6 @@ namespace Ornaments.DataAccess.Entities.Ornaments
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         public long CategoryId { get; set; }
-
+        public List<Comment>? Comments { get; set; }
     }
 }

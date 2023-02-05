@@ -8,6 +8,7 @@ using Ornaments.DataAccess.Repository;
 using RadioMeti.Application.DTOs.Admin.Category.Create;
 using RadioMeti.Application.DTOs.Admin.Category.Edit;
 using Ornaments.Core.Dtos.Paging;
+using Ornaments.Core.Dtos.Ornament.Comment;
 
 namespace Ornaments.Core.Services.Implements
 {
@@ -15,11 +16,33 @@ namespace Ornaments.Core.Services.Implements
     {
         private IGenericRepository<Category> _categoryRepository;
         private IGenericRepository<Ornament> _ornamentRepository;
+        private IGenericRepository<Comment> _commentRepository;
 
-        public OrnamentService(IGenericRepository<Category> categoryRepository, IGenericRepository<Ornament> ornamentRepository)
+        public OrnamentService(IGenericRepository<Category> categoryRepository, IGenericRepository<Ornament> ornamentRepository, IGenericRepository<Comment> commentRepository)
         {
             _categoryRepository = categoryRepository;
             _ornamentRepository = ornamentRepository;
+            _commentRepository = commentRepository;
+        }
+
+        public async Task AddComment(AddCommentDto add)
+        {
+            try
+            {
+                var comment = new Comment
+                {
+                 OrnamentId=add.OrnamentId,
+                 Text=add.Text,
+                 UserId=add.UserId,
+                };
+                await _commentRepository.AddEntity(comment);
+                await _commentRepository.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<string> CreateCategory(CreateCategoryDto create)
@@ -108,6 +131,24 @@ namespace Ornaments.Core.Services.Implements
                 throw;
             }
         }
+        public async Task<string> DeleteComment(long id)
+        {
+            try
+            {
+                var item = await _commentRepository.GetEntityById(id);
+                if (item == null) return null;
+                _commentRepository.DeleteEntity(item);
+                await _commentRepository.SaveChangesAsync();
+
+                return "comment Successfully deleted";
+
+            }
+            catch (Exception e)
+            {
+                return "Something is wrong";
+                throw;
+            }
+        }
 
         public async Task<string> EditCategory(EditCategoryDto edit)
         {
@@ -167,7 +208,7 @@ namespace Ornaments.Core.Services.Implements
 
         public async Task<FilterOrnamentDto> FilterOrnaments(FilterOrnamentDto filter)
         {
-            var query = _ornamentRepository.GetQuery().Include(p=>p.Category).AsQueryable();
+            var query = _ornamentRepository.GetQuery().Include(p=>p.Comments).Include(p=>p.Category).AsQueryable();
             #region filter
             if (!string.IsNullOrEmpty(filter.Name)) query = query.Where(p => p.Name.ToLower().Contains(filter.Name.ToLower())).AsQueryable();
             if(filter.IsDisplay) query = query.Where(p => p.IsDisplay).AsQueryable();
@@ -196,9 +237,22 @@ namespace Ornaments.Core.Services.Implements
             return await _categoryRepository.GetEntityById(id);
         }
 
+        public async Task<List<CommentsDto>> GetComments(long ornamentId)
+        {
+            return await _commentRepository.GetQuery().Include(p=>p.User).Include(p=>p.Ornament).Where(p => p.OrnamentId == ornamentId)
+                .Select(p => new CommentsDto { 
+                CreateDate = p.CreateDate,
+                Id = p.Id,
+                OrnamentName=p.Ornament.Name,
+                Text=p.Text,
+                UserName=p.User.UserName,
+                OrnamentId=p.OrnamentId
+                }).ToListAsync();
+        }
+
         public async Task<Ornament> GetOrnament(long id)
         {
-            return await _ornamentRepository.GetEntityById(id);
+            return await _ornamentRepository.GetQuery().Include(p=>p.Comments).ThenInclude(p=>p.User).Include(p=>p.Category).FirstOrDefaultAsync(p=>p.Id==id);
 
         }
     }

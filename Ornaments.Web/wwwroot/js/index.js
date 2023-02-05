@@ -129,3 +129,4 @@ $('.navbar-bg').click(function() {
 	$('.change-icon').addClass('navbar-toggler-icon');
 	$('.change-icon').removeClass('fas fa-times fa-lg');
 });
+

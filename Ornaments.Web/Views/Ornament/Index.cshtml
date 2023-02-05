@@ -1,0 +1,77 @@
+﻿@using Ornaments.Core.Dtos.Order;
+@using Ornaments.DataAccess.Entities.Ornaments;
+@using RadioMeti.Application.Utilities.Utils;
+@model Ornament
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="background:#f2f2f2;" dir="rtl">
+    <div class="container">
+        <div class="d-flex align-items-center flex-column p-3">
+            <img class="mw-100 rounded" height="500" src="@(PathExtension.OrnamentImageThumbPath+Model.Image)" />
+            <div class="bg-white d-flex align-items-center my-5 p-3 rounded w-100 justify-content-around">
+                @if (Model.Comments != null)
+                {
+                    <span class="text-muted"><i class="fa fa-comment-o"></i> @Model.Comments.Count() نظر</span>
+
+                }
+                <span class="text-muted"><i class="fa fa-archive"></i> @Model.Category.CategoryName</span>
+                <span class="text-muted"><i class="fa fa-calendar"></i> @Model.CreateDate.ToString()</span>
+            </div>
+            <div class="bg-white mb-5 p-3 rounded w-100 text-center">
+                <h4>@Model.Name</h4>
+                <p class="text-muted">@Model.Description</p>
+            </div>
+            <div class="w-100">
+                <div class="">
+                    <partial name="_AddProductToBasket" model="@(new AddProductToOrderDto{Count=1,OrnamentId=@Model.Id})" />
+                </div>
+                <div class="product_variant quantity">
+                    <label>تعداد</label>
+                    <input class="form-control" min="1" max="100" id="productCounter" value="1" type="number">
+                    <button class="btn btn-outline-primary my-4"   type="button" onclick="submitForm('#add-product-to-order-form')">افزودن به سبد</button>
+                </div>
+            <div class="w-100">
+                <div class="">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                            <div class="alert alert-info">
+                                Comment panel
+                            </div>
+                            <div class="panel-body">
+                                <form asp-controller="Ornament" asp-action="AddComment" method="post">
+                                    <input type="hidden" value="@Model.Id" name="OrnamentId" />
+<textarea class="form-control" placeholder="نظر دهید ..." rows="3" name="Text"></textarea>
+                                    <br>
+                                    <div class="text-center"> <button type="submit" class="btn btn-info pull-right">ثبت</button></div>
+                                    <div class="clearfix"></div>
+                                </form>
+                                <hr>
+                                <ul class="media-list text-right">
+                                    @foreach (var item in Model.Comments)
+                                    {
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <span class="text-muted pull-right">
+                                                    <small class="text-muted">@item.CreateDate</small>
+                                                </span>
+                                                <strong class="text-success">@item.User.UserName</strong>
+                                                <p>
+                                                    @item.Text
+                                                </p>
+                                            </div>
+                                        </li>
+                                    }
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

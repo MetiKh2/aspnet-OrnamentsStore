@@ -17,10 +17,12 @@
 
 		}
 
-		<form class="form-inline mx-2">
+		<form class="form-inline mx-2" asp-action="OrnamentsList" asp-controller="Ornament" method="get">
 			<a href="#" class="search-close-icon"><i class="fas fa-times"></i></a>
-			<input class="form-control mr-sm-2 mr-0 d-none search-box" type="search" aria-label="Search">
-			<a href="#" class="mx-0"><li class="fas fa-search search-icon"></i></a>
+			<input class="form-control mr-sm-2 mr-0 d-none search-box" name="Name" type="search" aria-label="Search">
+			@*<button type="submit" class="border-0 bg-transparent" style="outline:0;">*@
+				<a class="mx-0"><li class="fas fa-search search-icon"></i></a>
+			@*</button>*@
 			@*<a asp-controller="Auth" asp-action="SignOut" class="mx-1">خروج</a>*@
 
 		</form>
@@ -77,7 +79,7 @@
 			<ul class="navbar-nav p-0 flex-wrap">
 
 				<li class="nav-item dropdown active">
-					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link" onclick="navigateHeader('/')" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						خانه اصلی
 					</a>
 				</li>
@@ -85,7 +87,7 @@
 				@foreach (var item in Model)
 				{
 					<li class="nav-item dropdown">
-						<a class="nav-link" asp-controller="Ornaments" asp-action="Ornaments" asp-route-category="@item.Id" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link" onclick="navigateHeader('/Ornament/OrnamentsList?CategoryId=@item.Id')" asp-controller="Ornament" asp-action="OrnamentsList" asp-route-CategoryId="@item.Id" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							@item.CategoryName
 						</a>
 					</li>

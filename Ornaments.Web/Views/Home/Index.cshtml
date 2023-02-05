@@ -16,7 +16,7 @@
             <div class="multiple-items">
                 @foreach (var item in Model.SliderOrnaments)
                 {
-                    <div><img style="height:650px;" class="slide-img" src="@(PathExtension.OrnamentImageOriginPath+item.Image)"></div>
+                     <a asp-controller="Ornament" asp-action="Index" asp-route-id="@item.Id"><div><img style="height:650px;" class="slide-img" src="@(PathExtension.OrnamentImageOriginPath+item.Image)"></div></a>
                 }
             </div>
         </div>
@@ -96,27 +96,27 @@
                @foreach (var item in Model.MainOrnaments.Take(2))
                 {
                     <div class="col-12 col-sm-6 col-md-3 p-0">
-                        <div class="image-all-together">
+                        <a asp-controller="Ornament" asp-action="Index" asp-route-id="@item.Id"> <div class="image-all-together">
                         <img class="img" style="height:300px;" src="@(PathExtension.OrnamentImageOriginPath+item.Image)">
                             <span class="one"></span>
                             <span class="two"></span>
                             <span class="three"></span>
                             <span class="four"></span>
-                        </div>
+                        </div></a>
                     </div>
                 }
             
             @if (Model.MainOrnaments.Count() > 2)
             {
                 <div class="col-12 col-md-6 p-0">
-                    <div class="image-all-together">
+                     <a asp-controller="Ornament" asp-action="Index" asp-route-id="@Model.MainOrnaments[2].Id"><div class="image-all-together">
                         <img class="img" style="height:300px;" src="@(PathExtension.OrnamentImageOriginPath+Model.MainOrnaments[2].Image)">
 
                         <span class="one"></span>
                         <span class="two"></span>
                         <span class="three"></span>
                         <span class="four"></span>
-                    </div>
+                    </div></a>
                 </div>
 
             }
@@ -124,14 +124,14 @@
             @foreach (var item in Model.MainOrnaments.Skip(3))
             {
                 <div class="col-12 col-sm-6 col-md-3 p-0">
-                    <div class="image-all-together">
+                     <a asp-controller="Ornament" asp-action="Index" asp-route-id="@item.Id"><div class="image-all-together">
                         <img class="img" style="height:300px;" src="@(PathExtension.OrnamentImageOriginPath+item.Image)">
 
                         <span class="one"></span>
                         <span class="two"></span>
                         <span class="three"></span>
                         <span class="four"></span>
-                    </div>
+                    </div></a>
                 </div>
             }
         </div>
@@ -167,34 +167,36 @@
                 {
                     <div class="mx-1">
                         <div class="card card-item mb-2">
-@*
+                        <a asp-controller="Ornament" asp-action="Index" asp-route-id="@item.Id">
+                                @*
                             <div class="takhfif d-flex justify-content-start align-items-start">
-                                <p>-2%</p>
+                            <p>-2%</p>
                             </div>*@
-                            <img src="@(PathExtension.OrnamentImageThumbPath+item.Image)" class="card-img-top" alt="jewelry">
-                            <div class="card-body d-flex flex-column align-items-center">
+                                <img src="@(PathExtension.OrnamentImageThumbPath+item.Image)" class="card-img-top" alt="jewelry">
+                                <div class="card-body d-flex flex-column align-items-center">
 
-                                <h6 class="card-title text-center">@item.Name</h6>
-                                <div class="d-flex flex-column flex-md-row text-center card-price">
-                                    <p class="card-text text-danger font-12 mr-1 mb-0 text-dir">@item.Price.ToString("n0") تومان</p>
-                                </div>
-                                @*<div class="rate">
-                                    <a href="#"><li class="fa fa-star checked"></li></a>
-                                    <a href="#"><li class="fa fa-star checked"></li></a>
-                                    <a href="#"><li class="fa fa-star checked"></li></a>
-                                    <a href="#"><li class="fa fa-star checked"></li></a>
-                                    <a href="#"><li class="fa fa-star checked"></li></a>
+                                    <h6 class="card-title text-center">@item.Name</h6>
+                                    <div class="d-flex flex-column flex-md-row text-center card-price">
+                                        <p class="card-text text-danger font-12 mr-1 mb-0 text-dir">@item.Price.ToString("n0") تومان</p>
+                                    </div>
+                                    @*<div class="rate">
+                                <a href="#"><li class="fa fa-star checked"></li></a>
+                                <a href="#"><li class="fa fa-star checked"></li></a>
+                                <a href="#"><li class="fa fa-star checked"></li></a>
+                                <a href="#"><li class="fa fa-star checked"></li></a>
+                                <a href="#"><li class="fa fa-star checked"></li></a>
                                 </div>*@
 
-                            </div>
+                                </div>
 
-                          @*  <div class="card-footer justify-content-around footer-index">
-                                <a href="#"><li class="fas fa-random"></li></a>
-                                <a href="#"><li class="far fa-heart"></li></a>
-                                <a href="#"><li class="fas fa-shopping-cart"></li></a>
-                                <a href="#"><li class="fas fa-search"></li></a>
+                                @*  <div class="card-footer justify-content-around footer-index">
+                            <a href="#"><li class="fas fa-random"></li></a>
+                            <a href="#"><li class="far fa-heart"></li></a>
+                            <a href="#"><li class="fas fa-shopping-cart"></li></a>
+                            <a href="#"><li class="fas fa-search"></li></a>
                             </div>*@
 
+                        </a>
                         </div>
                     </div>
                 }
