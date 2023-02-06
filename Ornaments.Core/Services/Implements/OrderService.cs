@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ornaments.Core.Dtos.Order;
+using Ornaments.Core.Dtos.Ornament.Category;
+using Ornaments.Core.Dtos.Paging;
 using Ornaments.Core.Extensions;
 using Ornaments.Core.Services.Interfaces;
 using Ornaments.DataAccess.Entities.Order;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Ornaments.Core.Services.Implements
 {
-    public class OrderService:IOrderService
+    public class OrderService : IOrderService
     {
         #region cons
         private readonly IGenericRepository<Order> _orderRepository;
@@ -45,7 +47,7 @@ namespace Ornaments.Core.Services.Implements
         {
             if (!await _orderRepository.GetQuery().AnyAsync(p => p.UserId == userId && !p.IsPay))
                 await AddOrderForUser(userId);
-            return await _orderRepository.GetQuery().Include(p => p.OrderDetails).ThenInclude(p => p.Ornament).Include(p => p.OrderDetails).ThenInclude(p => p.Ornament).FirstOrDefaultAsync(p => p.UserId == userId && !p.IsPay);
+            return await _orderRepository.GetQuery().Include(p => p.OrderDetails).ThenInclude(p => p.Ornament).ThenInclude(p => p.Category).Include(p => p.OrderDetails).ThenInclude(p => p.Ornament).FirstOrDefaultAsync(p => p.UserId == userId && !p.IsPay);
         }
 
         public async Task AddProductToOpenOrder(AddProductToOrderDto order, string userId)
@@ -141,6 +143,62 @@ namespace Ornaments.Core.Services.Implements
             _orderRepository.EditEntity(openOrder);
             await _orderRepository.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<bool> AddAddressAndPhone(string userId, string address, string phone)
+        {
+            try
+            {
+                var openOrder = await GetUserLatestOrder(userId);
+                openOrder.Address = address;
+                openOrder.Phone = phone;
+                _orderRepository.EditEntity(openOrder);
+                await _orderRepository.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+        }
+
+        public async Task<FilterOrderDto> FilterOrders(FilterOrderDto filter)
+        {
+            var query = _orderRepository.GetQuery().OrderByDescending(p => p.CreateDate).AsQueryable();
+            if (filter.IsPay) query = query.Where(p => p.IsPay).AsQueryable();
+            if (!string.IsNullOrEmpty(filter.Phone)) query = query.Where(p => p.Phone.ToLower().Contains(filter.Phone.ToLower())).AsQueryable();
+            if (!string.IsNullOrEmpty(filter.UserId)) query = query.Where(p => p.UserId == filter.UserId).AsQueryable();
+            #region paging
+            var pager = Pager.Build(filter.PageId, await query.CountAsync(), filter.TakeEntity, filter.HowManyShowPageAfterAndBefore);
+            var all = await query.Paging(pager).ToListAsync();
+            #endregion
+            return filter.SetOrders(all).SetPaging(pager);
+        }
+
+        public async Task<List<OrderDetail>> GetOrderDetails(long orderId)
+        {
+            var order = await _orderRepository.GetQuery().Include(p => p.OrderDetails).ThenInclude(p => p.Ornament).Where(p => p.Id == orderId).FirstOrDefaultAsync();
+
+            return order.OrderDetails.ToList();
+        }
+
+        public async Task<bool> AddStatus(string status, long orderId)
+        {
+            try
+            {
+                var order = await _orderRepository.GetEntityById(orderId);
+                order.Status = status;
+                _orderRepository.EditEntity(order);
+                await _orderRepository.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
         }
 
         #endregion

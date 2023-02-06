@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MetiJob.Api.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ornaments.Core.Dtos.Admin.Users;
 using Ornaments.Core.Dtos.Admin.Users.Create;
@@ -9,6 +10,8 @@ namespace Ornaments.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
+    [PermissionChecker]
+
     public class UserController : Controller
     {
         private readonly IUserService _userService;

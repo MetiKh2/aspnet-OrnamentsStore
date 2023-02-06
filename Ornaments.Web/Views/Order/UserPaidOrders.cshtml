@@ -1,0 +1,45 @@
+﻿@using Ornaments.DataAccess.Entities.Order;
+@model List<Order>
+@{
+    ViewData["Title"] = "UserPaidOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="site-section bg-light py-4" id="contact-section ">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-7 text-center mb-5">
+        <h2>سفارش  ها</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mb-5">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th>تاریخ پرداخت</th>
+              <th>تلفن</th>
+              <th>آدرس</th>
+              <th>وضعیت</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var item in Model)
+                        {
+                            
+            <tr>
+              <td>@item.PermentDate</td>
+              <td>@item.Phone</td>
+              <td>@item.Address</td>
+              <td>@item.Status</td>
+            </tr>
+                                    }
+
+          </tbody>
+        </table>
+      </div>
+       
+    </div>
+  </div>
+</div>
+

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MetiJob.Api.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ornaments.Core.Dtos.Ornament.Category;
 using Ornaments.Core.Services.Interfaces;
@@ -9,6 +10,7 @@ namespace Ornaments.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
+    [PermissionChecker]
     public class CategoryController : Controller
     {
         private readonly IOrnamentService _ornamentService;

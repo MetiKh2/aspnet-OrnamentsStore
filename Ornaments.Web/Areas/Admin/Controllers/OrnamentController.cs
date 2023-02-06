@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MetiJob.Api.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ornaments.Core.Dtos;
 using Ornaments.Core.Dtos.Ornament;
@@ -12,6 +13,8 @@ using RadioMeti.Application.Utilities.Utils;
 namespace Ornaments.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [PermissionChecker]
+
     [Authorize]
     public class OrnamentController : Controller
     {

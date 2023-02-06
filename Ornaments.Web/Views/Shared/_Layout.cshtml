@@ -77,10 +77,8 @@
 						<div class="footer-items d-flex flex-column align-items-center text-white text-center">
 							<h6 class="border-bottom border-white p-2">حساب کاربری</h6>
 							<ul class="list-unstyled">
-								<li><a href="#" class="font-12">حساب من</a></li>
-								<li><a href="#" class="font-12">سفارشات من</a></li>
-								<li><a href="#" class="font-12">کیف پول من</a></li>
-								<li><a href="#" class="font-12">سبد خرید من</a></li>
+								<li><a asp-controller="Order" asp-action="UserPaidOrders" class="font-12">سفارشات من</a></li>
+								<li><a asp-controller="Order" asp-action="UserOpenOrder" class="font-12">سبد خرید من</a></li>
 							</ul>
 						</div>
 					</div>
@@ -88,7 +86,7 @@
 						<div class="footer-items d-flex flex-column align-items-center text-white text-center">
 							<h6 class="border-bottom border-white p-2"> تماس باما</h6>
 							<ul class="list-unstyled">
-								<li><p href="#" class="font-12 m-0">تلفن: 12345678-021</p></li>
+								<li><p href="#" class="font-12 m-0">تلفن: 09197864453</p></li>
 								<li><p href="#" class="font-12 m-0">فکس: 12345679-021</p></li>
 								<li><p href="#" class="font-12 m-0">info@jewelry.com :ایمیل</p></li>
 								<li><p href="#" class="font-12 m-0">آدرس: تهران- میدان هفت تیر- خیابان کریم خان زند- پلاک 12 </p></li>
@@ -140,6 +138,36 @@
 		function submitForm(formId) {
 			$(formId).submit();
 			open_waiting()
+		}
+		function removeProductFromOrder(detailId) {
+			console.log("kherherkjhkj")
+			fetch("/remove-order-item/" + detailId)
+				.then(res => {
+					return res.json()
+
+				}).then(data=>{
+					console.log(data)
+					ShowMessage('پیغام', data.message, data.status.toLowerCase())
+					if (data.isFinally) setTimeout(() => { window.location.reload() }, 1500)
+					// $("#user-open-order-wrapper").html(res.data);
+
+				})
+				.catch(err => {
+
+				})
+		}
+
+		function changeOrderDetailCount(e, detailId) {
+			console.log(e)
+			fetch("/change-detail-count/" + detailId + "/" + e.value)
+			.then(res=>{
+					window.location.reload()
+					return res.json()
+				}).then(data=>{
+					
+				}).catch(err => {
+
+				})
 		}
 	</script>
 </body>

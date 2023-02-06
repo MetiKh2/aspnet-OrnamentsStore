@@ -22,9 +22,9 @@ namespace Ornaments.DataAccess.Entities.Order
         [Display(Name = "شرح ادمین")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string AdminDescription { get; set; }
-        [Display(Name = "شرح ادمین")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public string Address { get; set; }
+        public string? Address { get; set; }
+        public string? Phone { get; set; }
+        public string? Status { get; set; }
         #endregion
         #region rel
         public ICollection<OrderDetail> OrderDetails { get; set; }

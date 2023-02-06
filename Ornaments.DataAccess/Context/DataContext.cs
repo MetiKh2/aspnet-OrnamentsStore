@@ -17,7 +17,7 @@ namespace Ornaments.DataAccess.Context
         public DbSet<Entities.Ornaments.Ornament> Ornaments{ get; set; }
         public DbSet<Category> Categories{ get; set; }
         public DbSet<Comment> Comments{ get; set; }
-        public DbSet<Order> Orderd{ get; set; }
+        public DbSet<Order> Orders{ get; set; }
         public DbSet<OrderDetail> OrderDetails{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -25,6 +25,8 @@ namespace Ornaments.DataAccess.Context
             builder.Entity<Ornament>().HasQueryFilter(p => !p.IsRemoved);
             builder.Entity<Category>().HasQueryFilter(p => !p.IsRemoved);
             builder.Entity<Comment>().HasQueryFilter(p => !p.IsRemoved);
+            builder.Entity<Order>().HasQueryFilter(p => !p.IsRemoved);
+            builder.Entity<OrderDetail>().HasQueryFilter(p => !p.IsRemoved);
 
             base.OnModelCreating(builder);
         }

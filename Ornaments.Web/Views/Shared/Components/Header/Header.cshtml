@@ -4,7 +4,7 @@
 <span class="navbar-bg"></span>
 <div class="row menu-top w-100 m-0 d-none d-lg-flex justify-content-between align-items-center">
 	<div class="d-flex justify-content-start ml-4 menu-icon">
-		<a href="#" class="mx-2"><li class="fas fa-shopping-cart"></li></a>
+		<a asp-controller="Order" asp-action="UserOpenOrder" class="mx-2"><li class="fas fa-shopping-cart"></li></a>
 		<a href="#" class="mx-2"><li class="fas fa-user"></li></a>
 		@if (User.Identity.IsAuthenticated)
 		{
@@ -38,7 +38,7 @@
 </div>
 <div class="row w-100 m-0 d-flex flex-row justify-content-between align-items-center flex-lg-column align-items-lg-center justify-content-lg-center">
 	<div class="d-flex justify-content-start align-items-center d-lg-none ml-2 menu-icon">
-		<a href="#" class="mx-1"><li class="fas fa-shopping-cart"></li></a>
+		<a asp-controller="Order" asp-action="UserOpenOrder" class="mx-2"><li class="fas fa-shopping-cart"></li></a>
 		<a href="#" class="mx-1"><li class="fas fa-user"></li></a>
 		@if (User.Identity.IsAuthenticated)
 		{

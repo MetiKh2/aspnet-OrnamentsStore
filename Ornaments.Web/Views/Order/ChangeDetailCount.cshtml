@@ -2,106 +2,78 @@
 @using Ornaments.Core.Extensions;
 @using Ornaments.DataAccess.Entities.Order;
 @using RadioMeti.Application.Utilities.Utils;
-<div class="container">
-			<form action="#">
-				<div class="row">
-					<div class="col-12">
-						<div class="table_desc">
-							<div class="cart_page table-responsive">
-								@if (Model.OrderDetails!=null&&Model.OrderDetails.Any())
-								   {
-									   <table>
-									<thead>
-										<tr>
-											<th class="product_remove">حذف</th>
-											<th class="product_thumb">تصویر</th>
-											<th class="product_name">محصول</th>
-											<th class="product-price">قیمت</th>
-											<th class="product-price">تخفیف</th>
-											<th class="product_quantity">تعداد</th>
-											<th class="product_total">جمع کل</th>
-										</tr>
-									</thead>
-									<tbody>
-									
-
-									
-									   @foreach (var item in Model.OrderDetails)
-								   {
-									   	<tr>
-											<td class="product_remove"><a onclick="removeProductFromOrder(@item.Id)"><i class="fa fa-trash-o"></i></a></td>
-											<td class="product_thumb">
-												<a href="#"><img src="@(PathExtension.OrnamentImageThumbPath+item.Ornament.Image)" alt=""></a>
-											</td>
-											<td class="product_name"><a href="#">@item.Ornament.Name</a></td>
-											<td class="product-price">@((item.Ornament.Price).ToString("n0")) تومان</td>
-										
-											<td class="product_quantity">
-												<label>تعداد</label>
-											<input min="1" onchange="changeOrderDetailCount(this,@item.Id)" max="100" value="@item.Count" type="number">
-											</td>
-										</tr>
-										}
-
-									
-								</tbody>
-								</table>
-								}
-									else
-									{
-									string noItemFoundError="سبد خرید شما خالی می باشد";
-
-										<partial name="_NoItemFound" model="@noItemFoundError"/>
-									}
-							</div>
-							@*<div class="cart_submit">
-								<button type="submit">به روز رسانی سبد</button>
-							</div>*@
-						</div>
-					</div>
-				</div>
-				<!--coupon code area start-->
-			@if (Model.OrderDetails != null && Model.OrderDetails.Any())
+<div class="card shopping-cart">
+	<div class="card-body">
+		@if (Model.OrderDetails != null && Model.OrderDetails.Any())
+		{
+			@foreach (var item in Model.OrderDetails)
 			{
-				<div class="coupon_area">
-					<div class="row">
-						<div class="col-lg-6 col-md-6">
-							<div class="coupon_code left">
-								<h3>کد تخفیف</h3>
-								<div class="coupon_inner">
-									<p>کد تخفیف خود را در صورت وجود وارد نمایید</p>
-									<input placeholder="کد تخفیف" type="text">
-									<button type="submit">اعمال کد تخفیف</button>
-								</div>
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-2 text-center">
+						<img class="img-responsive" src="@(PathExtension.OrnamentImageThumbPath+item.Ornament.Image)" alt="prewiew" width="120" height="80">
+					</div>
+					<div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+						<h4 class="product-name"><strong>@item.Ornament.Name</strong></h4>
+						<h4>
+							<small>@item.Ornament.Category.CategoryName</small>
+
+						</h4>
+					</div>
+					<div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+						<div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+							<h6><strong>@((item.Ornament.Price).ToString("n0")) تومان  </strong></h6>
+						</div>
+						<div class="col-4 col-sm-4 col-md-4">
+							<div class="quantity">
+
+								<input onchange="changeOrderDetailCount(this,@item.Id)" type="number" step="1"
+									   max="99" min="1"
+									   value="@item.Count" title="Qty" class="qty"
+									   size="4">
+
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-6">
-							<div class="coupon_code right">
-								<h3>مجموع سبد</h3>
-								<div class="coupon_inner">
-									<div class="cart_subtotal">
-										<p>جمع اجزا</p>
-										<p class="cart_amount">1,350,000 تومان</p>
-									</div>
-									<div class="cart_subtotal ">
-										<p>حمل و نقل</p>
-										<p class="cart_amount">15,000 تومان</p>
-									</div>
-									<a href="#">محاسبه هزینه</a>
-
-									<div class="cart_subtotal has-border">
-										<p>جمع کل</p>
-										<p class="cart_amount">@Model.OrderDetails.ToList().StringSumOrderDetailsWithDiscount() تومان</p>
-									</div>
-									<div class="checkout_btn">
-										<a href="#">پرداخت</a>
-									</div>
-								</div>
-							</div>
+						<div class="col-2 col-sm-2 col-md-2 text-right">
+							<button onclick="removeProductFromOrder(@item.Id)" type="button" class="btn btn-outline-danger btn-xs">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</button>
 						</div>
 					</div>
 				</div>
+				<hr>
+
 			}
-			<!--coupon code area end-->
-			</form>
+
+		}
+	</div>
+	<form asp-controller="Order" asp-action="PayUserOrder" method="get">
+
+		<div class="card-footer" dir="rtl">
+			<div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+				<div class="row">
+					<div class="col-6">
+						<label>تماس</label>
+
+						<input type="text" class="form-control" placeholder="Phone" name="phone">
+					</div>
+					<div class="col-6">
+						<label>آدرس</label>
+						<textarea class="form-control" name="address"></textarea>
+					</div>
+					@if (ViewBag.error == true)
+					{
+						<div class="alert alert-warning">آدرس و تلفن را وارد کنید</div>
+					}
+				</div>
+			</div>
+			<div class="pull-right" style="margin: 10px">
+				<button type="submit" class="btn btn-success pull-right">خرید</button>
+				<div class="pull-right" style="margin: 5px">
+					جمع کل: <b>@Model.OrderDetails.ToList().StringSumOrderDetailsWithDiscount() تومان</b>
+				</div>
+			</div>
+
 		</div>
+	</form>
+
+</div>
