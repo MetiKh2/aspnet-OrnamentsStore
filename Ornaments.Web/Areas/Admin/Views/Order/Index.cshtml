@@ -54,6 +54,9 @@
                             <th>Phone</th>
                             <th>Address</th>
                             <th>PermentDate</th>
+                            <th>Full Name</th>
+                            <th>Post Code</th>
+                            <th>نوع پرداخت</th>
                             <th>Status</th>
                             <th>Commands</th>
                         </tr>
@@ -65,6 +68,17 @@
                                 <td>@item.Phone</td>
                                 <td>@item.Address</td>
                                 <td>@item.PermentDate</td>
+                                <td>@item.FullName</td>
+                                <td>@item.PostCode</td>
+                                @if (item.PayInHome)
+                                {
+                                    <td style="font-size:13px;">پرداخت درب منزل</td>
+                                }
+                                else
+                                {
+                                    <td style="font-size:13px;">پرداخت آنلابن</td>
+
+                                }
                                 <td>
                                     <form asp-area="Admin" asp-controller="Order" asp-action="AddStatus" method="post">
                                         <input value="@item.Status" name="status" />

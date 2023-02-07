@@ -9,6 +9,8 @@ using Ornaments.DataAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -145,13 +147,15 @@ namespace Ornaments.Core.Services.Implements
             return true;
         }
 
-        public async Task<bool> AddAddressAndPhone(string userId, string address, string phone)
+        public async Task<bool> AddAddressAndPhone(string userId, string address, string phone, string fullname, string postCode)
         {
             try
             {
                 var openOrder = await GetUserLatestOrder(userId);
                 openOrder.Address = address;
                 openOrder.Phone = phone;
+                openOrder.PostCode = postCode;
+                openOrder.FullName = fullname;
                 _orderRepository.EditEntity(openOrder);
                 await _orderRepository.SaveChangesAsync();
                 return true;
@@ -191,6 +195,23 @@ namespace Ornaments.Core.Services.Implements
                 var order = await _orderRepository.GetEntityById(orderId);
                 order.Status = status;
                 _orderRepository.EditEntity(order);
+                await _orderRepository.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public async Task<bool> SetPayInHomeOrder(string userId)
+        {
+            try
+            {
+                var openOrder = await GetUserLatestOrder(userId);
+                openOrder.PayInHome = true ;
+                _orderRepository.EditEntity(openOrder);
                 await _orderRepository.SaveChangesAsync();
                 return true;
             }

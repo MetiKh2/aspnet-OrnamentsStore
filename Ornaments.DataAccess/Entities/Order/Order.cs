@@ -24,7 +24,10 @@ namespace Ornaments.DataAccess.Entities.Order
         public string AdminDescription { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
+        public string? FullName { get; set; }
+        public string? PostCode { get; set; }
         public string? Status { get; set; }
+        public bool PayInHome { get; set; }
         #endregion
         #region rel
         public ICollection<OrderDetail> OrderDetails { get; set; }

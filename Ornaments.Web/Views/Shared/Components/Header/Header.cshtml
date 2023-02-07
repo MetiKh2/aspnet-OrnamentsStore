@@ -5,7 +5,7 @@
 <div class="row menu-top w-100 m-0 d-none d-lg-flex justify-content-between align-items-center">
 	<div class="d-flex justify-content-start ml-4 menu-icon">
 		<a asp-controller="Order" asp-action="UserOpenOrder" class="mx-2"><li class="fas fa-shopping-cart"></li></a>
-		<a href="#" class="mx-2"><li class="fas fa-user"></li></a>
+		<a asp-controller="Order" asp-action="UserPaidOrders" class="mx-2"><li class="fas fa-user"></li></a>
 		@if (User.Identity.IsAuthenticated)
 		{
 			<a asp-controller="Auth" asp-action="Logout" class="mx-1">خروج</a>
@@ -29,17 +29,14 @@
 
 	</div>
 	<div class="d-flex justify-content-center mr-4 menu-icon">
-		<div class="mx-2">(021-12345678)</div>
-		<a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
-		<a href="#" class="mx-2"><i class="fab fa-facebook-f"></i></a>
-		<a href="#" class="mx-2"><i class="fab fa-telegram-plane"></i></a>
-		<a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+		<div class="mx-2">(09197864453)</div>
+		<a href="https://www.instagram.com/silver_cluster/" class="mx-2"><i class="fab fa-instagram"></i></a>
 	</div>
 </div>
 <div class="row w-100 m-0 d-flex flex-row justify-content-between align-items-center flex-lg-column align-items-lg-center justify-content-lg-center">
 	<div class="d-flex justify-content-start align-items-center d-lg-none ml-2 menu-icon">
 		<a asp-controller="Order" asp-action="UserOpenOrder" class="mx-2"><li class="fas fa-shopping-cart"></li></a>
-		<a href="#" class="mx-1"><li class="fas fa-user"></li></a>
+		<a asp-controller="Order" asp-action="UserPaidOrders" class="mx-1"><li class="fas fa-user"></li></a>
 		@if (User.Identity.IsAuthenticated)
 		{
 			<a asp-controller="Auth" asp-action="Logout" class="mx-1">خروج</a>

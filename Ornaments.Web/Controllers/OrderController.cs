@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Ornaments.Core.Dtos.Common;
 using Ornaments.Core.Dtos.Order;
 using Ornaments.Core.Services.Interfaces;
@@ -74,15 +75,20 @@ namespace Ornaments.Web.Controllers
 		#endregion
 		#region pay order
 		[HttpGet("pay-order")]
-		public async Task<IActionResult> PayUserOrder(string address, string phone)
+		public async Task<IActionResult> PayUserOrder(string address, string phone,string fullname,string postCode,bool payInHome)
 		{
-			if (string.IsNullOrEmpty(address) || string.IsNullOrEmpty(phone))
-				return RedirectToAction(nameof(UserOpenOrder), new { error = "آدرس و تلفن را وارد کنید" });
+			if (string.IsNullOrEmpty(address) || string.IsNullOrEmpty(phone)|| string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(postCode))
+				return RedirectToAction(nameof(UserOpenOrder), new { error = "لطفا تمامی موارد را وارد کنید" });
 			else
-				if (!await orderService.AddAddressAndPhone(User.UserId(), address, phone))
+				if (!await orderService.AddAddressAndPhone(User.UserId(), address, phone,fullname,postCode))
 				return RedirectToAction(nameof(UserOpenOrder), new { error = "خطایی به وجود آمده" });
-
-			var openOrderAmount = await orderService.GetTotalOrderPriceForPayment(User.UserId());
+			if (payInHome)
+			{
+				await orderService.SetPayInHomeOrder(User.UserId());
+                await orderService.PayOrderProductPriceToStore(User.UserId(), "");
+				return RedirectToAction(nameof(UserPaidOrders));
+            }
+            var openOrderAmount = await orderService.GetTotalOrderPriceForPayment(User.UserId());
 			string callBackUrl = PathExtension.DomainAddress + Url.RouteUrl("ZarinpalPaymentResult");
 			string redirectUrl = "";
 			var status = _paymentService.CreatePaymentRequest(null, openOrderAmount, "خرید از سایت ما", callBackUrl, ref redirectUrl, null);
@@ -109,7 +115,7 @@ namespace Ornaments.Web.Controllers
 				TempData["SuccessMessage"] = "پرداخت موفقیت آمیز بود";
 				TempData["InfoMessage"] = "کد پیگیری شما" + refId;
 				await orderService.PayOrderProductPriceToStore(User.UserId(), refId.ToString());
-				return View();
+				return RedirectToAction(nameof(UserPaidOrders));
 			}
 			else
 			{

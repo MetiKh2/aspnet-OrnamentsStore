@@ -16,9 +16,10 @@ namespace Ornaments.Core.Services.Interfaces
         Task<int> GetTotalOrderPriceForPayment(string userId);
         Task PayOrderProductPriceToStore(string userId, string refId);
         Task<bool> CloseUserOpenOrderAfterPayment(string userId, string trackingCode);
-        Task<bool> AddAddressAndPhone(string userId,string address,string phone);
+        Task<bool> AddAddressAndPhone(string userId,string address,string phone,string fullname, string postCode);
         Task<FilterOrderDto> FilterOrders(FilterOrderDto filter);
         Task<bool> AddStatus(string status,long orderId);
+        Task<bool> SetPayInHomeOrder(string userId);
         #endregion
 
         #region order detail
