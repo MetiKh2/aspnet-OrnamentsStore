@@ -56,7 +56,7 @@ namespace Ornaments.Core.Services.Implements
         {
             var openOrder = await GetUserLatestOrder(userId);
             var openOrderDetail =
-                openOrder.OrderDetails.FirstOrDefault(p => p.OrnamentId == order.OrnamentId);
+                openOrder.OrderDetails.FirstOrDefault(p => p.OrnamentId == order.OrnamentId&&p.Size==order.Size);
             if (openOrderDetail == null)
             {
                 var orderDetail = new OrderDetail
@@ -64,6 +64,7 @@ namespace Ornaments.Core.Services.Implements
                     OrderId = openOrder.Id,
                     OrnamentId = order.OrnamentId,
                     Count = order.Count,
+                    Size = order.Size,
                 };
                 await _orderDetailRepository.AddEntity(orderDetail);
             }

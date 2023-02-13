@@ -33,7 +33,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Count</th>
+                                <th>Count</th>
+                                <th>Size</th>
                             <th>Commands</th>
                         </tr>
                     </thead>
@@ -43,7 +44,8 @@
                             <tr>
                                 <td>@item.Ornament.Name</td>
                                 <td>@item.Price</td>
-                                <td>@item.Count</td>
+                                    <td>@item.Count</td>
+                                    <td>@item.Size</td>
                                 <td>
                                     @*<a class="btn btn-sm btn-warning text-white" asp-area="Admin" asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@item.Id">Delete</a>*@
                                     @*<a class="btn btn-sm btn-warning text-white" asp-area="Admin" asp-controller="Order" asp-action="OrderDetails" asp-route-orderId="@item.Id">OrderDetails</a>*@

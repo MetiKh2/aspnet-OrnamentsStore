@@ -50,6 +50,7 @@
 				</p>
 				<div class="row social-footer d-flex justify-content-center">
 					<a href="https://www.instagram.com/silver_cluster/" class="m-2"><i class="fab fa-instagram p-1"></i></a>
+					<a href="https://t.me/silver_cluster" class="m-2"><i class="fab fa-telegram p-1"></i></a>
 				</div>
 
 				<div class="row my-2 d-flex flex-md-row flex-column-reverse justify-content-center">
@@ -122,6 +123,12 @@
 			let value = parseInt(e.target.value);
 			if (value && value > 0) {
 				$('#add-product-to-order-count').val(value);
+			}
+		})
+		$('#productSizeCounter').change(function (e) {
+			let value = parseInt(e.target.value);
+			if (value && value > 0&&value<7) {
+				$('#add-product-to-order-size').val(value);
 			}
 		})
 

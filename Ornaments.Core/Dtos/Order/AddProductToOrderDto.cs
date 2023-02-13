@@ -11,5 +11,6 @@ namespace Ornaments.Core.Dtos.Order
         public long OrnamentId { get; set; }
          
         public int Count { get; set; }
+        public int Size { get; set; }
     }
 }

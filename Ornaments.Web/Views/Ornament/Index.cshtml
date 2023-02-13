@@ -32,6 +32,8 @@
                     <partial name="_AddProductToBasket" model="@(new AddProductToOrderDto{Count=1,OrnamentId=@Model.Id})" />
                 </div>
                 <div class="product_variant quantity">
+                    <label>سایز</label>
+                    <input class="form-control" min="1" max="100" id="productSizeCounter" value="1" type="number">
                     <label>تعداد</label>
                     <input class="form-control" min="1" max="100" id="productCounter" value="1" type="number">
                     <button class="btn btn-outline-primary my-4"   type="button" onclick="submitForm('#add-product-to-order-form')">افزودن به سبد</button>
